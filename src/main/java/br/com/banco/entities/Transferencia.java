@@ -3,6 +3,7 @@ package br.com.banco.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "transferencia")
@@ -77,4 +78,38 @@ public class Transferencia {
     public void setConta(Conta conta) {
         this.conta = conta;
     }
+    
+    public Transferencia() {
+
+	}
+
+	public Transferencia(Long id, LocalDateTime dataTransferencia, BigDecimal valor, String tipo,
+			String nomeOperadorTransacao, Conta conta) {
+		super();
+		this.id = id;
+		this.dataTransferencia = dataTransferencia;
+		this.valor = valor;
+		this.tipo = tipo;
+		this.nomeOperadorTransacao = nomeOperadorTransacao;
+		this.conta = conta;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(conta, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Transferencia other = (Transferencia) obj;
+		return Objects.equals(conta, other.conta) && Objects.equals(id, other.id);
+	}
+    
+    
 }
