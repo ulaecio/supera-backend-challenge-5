@@ -1,9 +1,18 @@
 package br.com.banco.entities;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "transferencia")
@@ -14,7 +23,7 @@ public class Transferencia {
     private Long id;
 
     @Column(name = "data_transferencia", nullable = false)
-    private LocalDateTime dataTransferencia;
+    private LocalDate dataTransferencia;
 
     @Column(nullable = false, precision = 20, scale = 2)
     private BigDecimal valor;
@@ -39,11 +48,11 @@ public class Transferencia {
         this.id = id;
     }
 
-    public LocalDateTime getDataTransferencia() {
+    public LocalDate getDataTransferencia() {
         return dataTransferencia;
     }
 
-    public void setDataTransferencia(LocalDateTime dataTransferencia) {
+    public void setDataTransferencia(LocalDate dataTransferencia) {
         this.dataTransferencia = dataTransferencia;
     }
 
@@ -83,7 +92,7 @@ public class Transferencia {
 
 	}
 
-	public Transferencia(Long id, LocalDateTime dataTransferencia, BigDecimal valor, String tipo,
+	public Transferencia(Long id, LocalDate dataTransferencia, BigDecimal valor, String tipo,
 			String nomeOperadorTransacao, Conta conta) {
 		super();
 		this.id = id;

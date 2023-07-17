@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 import br.com.banco.entities.Transferencia;
 
 public interface TransferenciaRepository extends JpaRepository<Transferencia, Long>{
-	@Query("SELECT obj FROM transferencia obj WHERE obj.date BETWEEN :min and :max ORDER BY obj.dataTransferencia DESC")
+	@Query("SELECT obj FROM Transferencia obj WHERE obj.dataTransferencia BETWEEN :min and :max ORDER BY obj.dataTransferencia DESC")
 	Page<Transferencia> findTranferencias(LocalDate min, LocalDate max, Pageable pageable);
 }
